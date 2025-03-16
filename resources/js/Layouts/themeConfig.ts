@@ -1,0 +1,1 @@
+import { ThemeConfig as ThemeConfig } from "antd";

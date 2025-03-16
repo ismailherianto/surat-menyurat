@@ -1,97 +1,77 @@
-import { useEffect } from 'react';
-import Checkbox from '@/Components/Checkbox';
-import GuestLayout from '@/Layouts/GuestLayout';
-import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
-import { Head, Link, useForm } from '@inertiajs/react';
+import { Form, Input, Button, Card, Typography } from "antd";
+import { useState } from "react";
+import { Inertia } from "@inertiajs/inertia";
 
-export default function Login({ status, canResetPassword }) {
-    const { data, setData, post, processing, errors, reset } = useForm({
-        email: '',
-        password: '',
-        remember: false,
+const { Title, Text } = Typography;
+
+const LoginForm = () => {
+  const [loading, setLoading] = useState(false);
+
+  const onFinish = (values) => {
+    setLoading(true);
+    Inertia.post("/login", values, {
+      onFinish: () => setLoading(false),
     });
+  };
 
-    useEffect(() => {
-        return () => {
-            reset('password');
-        };
-    }, []);
+  return (
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <Card className="w-full max-w-sm p-6 shadow-lg rounded-lg">
+        <div className="text-center">
+          <Title level={3} className="mb-1">Welcome Back</Title>
+          <Text type="secondary">Please sign in to continue</Text>
+        </div>
 
-    const submit = (e) => {
-        e.preventDefault();
+        <Form
+          name="login"
+          layout="vertical"
+          onFinish={onFinish}
+          className="mt-5"
+          initialValues={{ email: "", password: "" }}
+        >
+          <Form.Item
+            label="Email"
+            name="email"
+            rules={[{ required: true, message: "Please enter your email" }]}
+          >
+            <Input type="email" placeholder="Enter email" size="large" />
+          </Form.Item>
 
-        post(route('login'));
-    };
+          <Form.Item
+            label="Password"
+            name="password"
+            rules={[{ required: true, message: "Please enter your password" }]}
+          >
+            <Input.Password placeholder="Enter password" size="large" />
+          </Form.Item>
 
-    return (
-        <GuestLayout>
-            <Head title="Log in" />
+          {/* <div className="flex justify-between items-center mb-4">
+            <Text className="text-gray-600 hover:underline cursor-pointer">
+              Forgot password?
+            </Text>
+          </div> */}
 
-            {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
+          <Form.Item>
+            <Button
+              type="primary"
+              htmlType="submit"
+              loading={loading}
+              size="large"
+              block
+            >
+              Login
+            </Button>
+          </Form.Item>
 
-            <form onSubmit={submit}>
-                <div>
-                    <InputLabel htmlFor="email" value="Email" />
+          <div className="text-center mt-3">
+            <Text>Don’t have an account? 
+              <Typography.Link href="/register" className="ml-1">Sign up</Typography.Link>
+            </Text>
+          </div>
+        </Form>
+      </Card>
+    </div>
+  );
+};
 
-                    <TextInput
-                        id="email"
-                        type="email"
-                        name="email"
-                        value={data.email}
-                        className="mt-1 block w-full"
-                        autoComplete="username"
-                        isFocused={true}
-                        onChange={(e) => setData('email', e.target.value)}
-                    />
-
-                    <InputError message={errors.email} className="mt-2" />
-                </div>
-
-                <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
-
-                    <TextInput
-                        id="password"
-                        type="password"
-                        name="password"
-                        value={data.password}
-                        className="mt-1 block w-full"
-                        autoComplete="current-password"
-                        onChange={(e) => setData('password', e.target.value)}
-                    />
-
-                    <InputError message={errors.password} className="mt-2" />
-                </div>
-
-                <div className="block mt-4">
-                    <label className="flex items-center">
-                        <Checkbox
-                            name="remember"
-                            checked={data.remember}
-                            onChange={(e) => setData('remember', e.target.checked)}
-                        />
-                        <span className="ms-2 text-sm text-gray-600">Remember me</span>
-                    </label>
-                </div>
-
-                <div className="flex items-center justify-end mt-4">
-                    {canResetPassword && (
-                        <Link
-                            href={route('password.request')}
-                            className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        >
-                            Forgot your password?
-                        </Link>
-                    )}
-
-                    <PrimaryButton className="ms-4" disabled={processing}>
-                        Log in
-                    </PrimaryButton>
-                </div>
-            </form>
-        </GuestLayout>
-    );
-}
+export default LoginForm;
