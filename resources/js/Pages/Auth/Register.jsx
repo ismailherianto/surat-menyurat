@@ -1,6 +1,6 @@
 import { Form, Input, Button, Card, Typography } from "antd";
+import axios from "axios";
 import { useState } from "react";
-import { Inertia } from "@inertiajs/inertia";
 
 const { Title, Text } = Typography;
 
@@ -9,9 +9,12 @@ const FormRegistrasi = () => {
 
   const onFinish = (values) => {
     setLoading(true);
-    Inertia.post("/register", values, {
-      onFinish: () => setLoading(false),
-    });
+    axios.post("/register", values)
+      .then(() => {
+        setLoading(false);
+        window.location = "/login";
+      })
+      .catch(() => setLoading(false));
   };
 
   return (
@@ -60,7 +63,7 @@ const FormRegistrasi = () => {
 
           <Form.Item
             label="Confirm Password"
-            name="confirmPassword"
+            name="password_confirmation"
             dependencies={["password"]}
             rules={[
               { required: true, message: "Please confirm your password" },
