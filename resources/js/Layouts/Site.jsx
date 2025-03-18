@@ -9,10 +9,11 @@ import {
     InboxOutlined,
     SendOutlined,
     ShareAltOutlined,
-    BarChartOutlined,
     SettingOutlined,
+    BarChartOutlined,
 } from "@ant-design/icons";
 import { Link } from "@inertiajs/react";
+import { Inertia } from "@inertiajs/inertia";
 
 const { Header, Sider, Content } = Layout;
 
@@ -59,7 +60,7 @@ const Site = ({ children }) => {
                         <Link href="/pengaturan">Pengaturan</Link>
                     </Menu.Item>
                     <Menu.Item key="8" icon={<LogoutOutlined />} danger>
-                        <Link href="/logout">Keluar</Link>
+                        <Link onClick={() => Inertia.visit(route('login'))}>Keluar</Link>
                     </Menu.Item>
                 </Menu>
             </Sider>
