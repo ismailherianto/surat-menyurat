@@ -1,6 +1,8 @@
-import { Form, Input, Button, Card, Typography, message } from "antd";
+import { Form, Button, Card, Typography, message } from "antd";
 import { useState } from "react";
 import { Inertia } from "@inertiajs/inertia";
+import InputText from "@/components/form/InputText";
+import InputPassword from "@/components/form/InputPassword";
 
 const { Title, Text } = Typography;
 
@@ -29,14 +31,13 @@ const LoginPage = () => {
           <Text type="secondary">Access your account</Text>
         </div>
 
-        <Form name="login" layout="vertical" onFinish={onFinish} initialValues={{ email: "", password: "" }}>
-          <Form.Item label="Email" name="email" rules={[{ type: 'email', required: true, message: "Enter your email" }]}>
-            <Input placeholder="email@email.com" size="large"/>
-          </Form.Item>
-
-          <Form.Item label="Password" name="password" rules={[{ required: true, message: "Enter your password" }]}>
-            <Input.Password placeholder="Enter password" size="large" />
-          </Form.Item>
+        <Form layout="vertical" onFinish={onFinish} initialValues={{ email: "", password: "" }}>
+          <InputText label="Email" name="email" required rule={[{
+            type: "email",
+            message: "Email tidak valid",
+            required: true,
+          }]}/>
+          <InputPassword label="Password" name="password" required size="large"/>
 
           <Form.Item>
             <Button type="primary" htmlType="submit" loading={loading} size="large" block>
