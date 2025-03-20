@@ -1,0 +1,75 @@
+import { ItemType, MenuItemType } from "antd/es/menu/interface";
+import { HookAPI } from "antd/es/modal/useModal";
+import React from "react";
+import { Inertia } from "@inertiajs/inertia";
+
+import {
+    DashboardOutlined,
+    InboxOutlined,
+    SendOutlined,
+    FileDoneOutlined,
+    SolutionOutlined,
+    FileTextOutlined,
+    SettingOutlined,
+    UserOutlined,
+    LogoutOutlined,
+} from "@ant-design/icons";
+
+const AdminMenu = (modal: HookAPI): ItemType<MenuItemType>[] | undefined => [
+    {
+        key: "FGOoX",
+        label: "Dashboard",
+        icon: <DashboardOutlined />,
+        onClick: () => Inertia.get("/dashboard"),
+    },
+    {
+        key: "eaMAD",
+        label: "Surat Masuk",
+        icon: <InboxOutlined />,
+        onClick: () => Inertia.get("/surat-masuk"),
+    },
+    {
+        key: "wfjWj",
+        label: "Surat Keluar",
+        icon: <SendOutlined />,
+        onClick: () => Inertia.get("/surat-keluar"),
+    },
+    {
+        key: "lTgaB",
+        label: "Arsip",
+        icon: <FileDoneOutlined />,
+        onClick: () => Inertia.get("/arsip"),
+    },
+    {
+        key: "GWwMz",
+        label: "Disposisi",
+        icon: <SolutionOutlined />,
+        onClick: () => Inertia.get("/disposisi"),
+    },
+    {
+        key: "xdodP",
+        label: "Laporan",
+        icon: <FileTextOutlined />,
+        onClick: () => Inertia.get("/laporan"),
+    },
+    {
+        key: "GxnwL",
+        label: "Pengaturan",
+        icon: <SettingOutlined />,
+        onClick: () => Inertia.get("/pengaturan"),
+    },
+    {
+        key: "hEWgg",
+        label: "Pengguna",
+        icon: <UserOutlined />,
+        onClick: () => Inertia.get("/pengguna"),
+    },
+    {
+        key: "LhlFL",
+        label: "Logout",
+        icon: <LogoutOutlined />,
+        onClick: () => Inertia.visit("/login"),
+    },
+];
+
+export default AdminMenu;

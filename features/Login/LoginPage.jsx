@@ -77,12 +77,12 @@ const LoginPage = () => {
               </Form.Item>
             </Form>
 
-            <div className="text-center text-gray-600">
+            {/* <div className="text-center text-gray-600">
               <Text>New here?</Text>
               <Typography.Link href="/register" className="ml-1">
                 Create an account
               </Typography.Link>
-            </div>
+            </div> */}
           </Card>
         </div>
 
