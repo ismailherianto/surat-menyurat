@@ -30,8 +30,8 @@ const LoginPage = () => {
         </div>
 
         <Form name="login" layout="vertical" onFinish={onFinish} initialValues={{ email: "", password: "" }}>
-          <Form.Item label="Email" name="email" rules={[{ required: true, message: "Enter your email" }]}>
-            <Input type="email" placeholder="Enter email" size="large" />
+          <Form.Item label="Email" name="email" rules={[{ type: 'email', required: true, message: "Enter your email" }]}>
+            <Input placeholder="email@email.com" size="large"/>
           </Form.Item>
 
           <Form.Item label="Password" name="password" rules={[{ required: true, message: "Enter your password" }]}>

@@ -10,11 +10,9 @@ createInertiaApp({
             `/features/${name}.jsx`,
             import.meta.glob("/features/**/*.jsx")
         ),
-    setup({ el, App, props }) {
-        const root = createRoot(el);
-
-        root.render(<App {...props} />);
-    },
+        setup({ el, App, props }) {
+            createRoot(el).render(<App {...props} />);
+        },
     progress: {
         color: '#4B5563',
     },
