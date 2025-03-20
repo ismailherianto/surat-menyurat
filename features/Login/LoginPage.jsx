@@ -1,8 +1,9 @@
 import { Form, Button, Card, Typography, message } from "antd";
 import { useState } from "react";
 import { Inertia } from "@inertiajs/inertia";
-import InputText from "@/components/form/InputText";
-import InputPassword from "@/components/form/InputPassword";
+import InputText from "../../resources/js/components/form/InputText";
+import InputPassword from "../../resources/js/components/form/InputPassword";
+
 
 const { Title, Text } = Typography;
 
@@ -14,8 +15,10 @@ const LoginPage = () => {
     axios
       .post(`/login`, values)
       .then(() => {
-        message.success("Login Berhasil");
-        Inertia.visit("/dashboard");
+        message.success("Login Berhasil").then(() => {
+          Inertia.visit("/dashboard");
+        });
+        
       })
       .catch((err) => message.error(err.response.data.message))
       .finally(() => setLoading(false));
@@ -24,35 +27,66 @@ const LoginPage = () => {
   
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-50 px-4">
-      <Card className="w-full max-w-md p-6 shadow-md rounded-xl bg-white">
-        <div className="text-center mb-6">
-          <Title level={3} className="text-gray-800">Sign In</Title>
-          <Text type="secondary">Access your account</Text>
+    <div className="flex min-h-screen items-center justify-center bg-gray-200 px-4">
+      <div className="flex w-full max-w-4xl bg-white shadow-lg rounded-xl overflow-hidden">
+        
+        {/* Left Side - Image */}
+        <div className="hidden md:flex md:w-1/2">
+          <img 
+            src="/assets/login/bg.jpg" 
+            alt="Login Background"
+            className="w-full h-full object-cover"
+          />
         </div>
 
-        <Form layout="vertical" onFinish={onFinish} initialValues={{ email: "", password: "" }}>
-          <InputText label="Email" name="email" required rule={[{
-            type: "email",
-            message: "Email tidak valid",
-            required: true,
-          }]}/>
-          <InputPassword label="Password" name="password" required size="large"/>
+        {/* Right Side - Form */}
+        <div className="w-full md:w-1/2 p-8">
+          <Card className="border-none shadow-none">
+            <div className="text-center mb-6">
+              <Title level={3} className="text-gray-800">Sign In</Title>
+              <Text type="secondary">Access your account</Text>
+            </div>
 
-          <Form.Item>
-            <Button type="primary" htmlType="submit" loading={loading} size="large" block>
-              Login
-            </Button>
-          </Form.Item>
-        </Form>
+            <Form layout="vertical" onFinish={onFinish} initialValues={{ email: "", password: "" }}>
+              <InputText 
+                label="Email" 
+                name="email"
+                rule={[{
+                  type: "email",
+                  message: "Email tidak valid",
+                  required: true,
+                }]}
+                size="large"
+              />
+              
+              <InputPassword 
+                label="Password"
+                name="password"
+                rule={[{
+                  required: true,
+                  message: "Password harus diisi",
+                }]}
+                size="large"
+                placeholder="Password"
+              />
 
-        {/* <div className="text-center text-gray-600">
-          <Text>New here?</Text>
-          <Typography.Link href="/register" className="ml-1">
-            Create an account
-          </Typography.Link>
-        </div> */}
-      </Card>
+              <Form.Item>
+                <Button type="primary" htmlType="submit" loading={loading} size="large" block>
+                  Login
+                </Button>
+              </Form.Item>
+            </Form>
+
+            <div className="text-center text-gray-600">
+              <Text>New here?</Text>
+              <Typography.Link href="/register" className="ml-1">
+                Create an account
+              </Typography.Link>
+            </div>
+          </Card>
+        </div>
+
+      </div>
     </div>
   );
 };
