@@ -20,7 +20,7 @@ const AdminMenu = (modal: HookAPI): ItemType<MenuItemType>[] | undefined => [
         key: "FGOoX",
         label: "Dashboard",
         icon: <DashboardOutlined />,
-        onClick: () => Inertia.get("/dashboard"),
+        onClick: () => Inertia.get("/"),
     },
     {
         key: "eaMAD",
@@ -68,7 +68,13 @@ const AdminMenu = (modal: HookAPI): ItemType<MenuItemType>[] | undefined => [
         key: "LhlFL",
         label: "Logout",
         icon: <LogoutOutlined />,
-        onClick: () => Inertia.visit("/login"),
+        onClick: () => modal.confirm({
+            title: "Logout",
+            content: "Apakah anda yakin ingin keluar?",
+            open: true,
+            width: 300,
+            onOk: () => Inertia.visit("/login"),
+        })
     },
 ];
 

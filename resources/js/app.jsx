@@ -6,14 +6,13 @@ import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 
 createInertiaApp({
-    resolve: (name) => resolvePageComponent(
-            `/features/${name}.jsx`,
-            import.meta.glob("/features/**/*.jsx")
+    // Below you can see that we are going to get all React components from resources/js/Pages folder
+    resolve: (name) =>
+        resolvePageComponent(
+            `/features/${name}.tsx`,
+            import.meta.glob("/features/**/*.tsx")
         ),
-        setup({ el, App, props }) {
-            createRoot(el).render(<App {...props} />);
-        },
-    progress: {
-        color: '#4B5563',
+    setup({ el, App, props }) {
+        createRoot(el).render(<App {...props} />);
     },
 });
