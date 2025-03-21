@@ -11,7 +11,7 @@ interface InputTextProps {
   value: string
   rule?: Rule[]; // Optional
   size?: SizeType; // Optional
-  onChange: React.ChangeEventHandler<HTMLInputElement>
+  onChange?: React.ChangeEventHandler<HTMLInputElement>
   placeholder?: string; // Optional
   disabled?: boolean; // Optional
   addonBefore?: ReactNode; // Optional
