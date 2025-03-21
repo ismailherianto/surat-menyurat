@@ -33,11 +33,28 @@ const Site = (p: Readonly<SiteProps>) => {
     return (
         <Layout className="min-h-screen">
             {/* Sidebar */}
-            <Sider collapsible breakpoint="lg" collapsedWidth="80" className="h-screen">
+            {/* <Sider
+                collapsible
+                breakpoint="lg"
+                collapsedWidth="80"
+                className="h-screen"
+            >
                 <div className="text-white text-center py-4 text-lg font-bold">
                     📜 E-Surat
                 </div>
                 <Menu theme="dark" mode="inline" items={buildMenu} />
+            </Sider> */}
+
+            <Sider collapsible className="h-screen bg-gray-900 text-white">
+                <div className="text-center text-xl font-bold text-white py-4">
+                    📜 <span className="text-blue-400">E-Surat</span>
+                </div>
+                <Menu
+                    theme="dark"
+                    mode="inline"
+                    className="bg-gray-900"
+                    items={buildMenu}
+                />
             </Sider>
 
             {/* Main Content */}
@@ -54,18 +71,30 @@ const Site = (p: Readonly<SiteProps>) => {
                 </Header>
 
                 {/* Breadcrumbs */}
-                <div className="px-6 pt-4">
-                    <Breadcrumb>
+                <div className="px-6 py-3 mb-4 bg-white rounded-lg shadow-md border border-gray-300 flex items-center space-x-3">
+                    <Breadcrumb
+                        separator={<span className="text-gray-400">/</span>}
+                    >
                         {breadcrumbs.map((item, index) => (
-                            <Breadcrumb.Item key={index} href={item.href}>
-                                {item.title}
+                            <Breadcrumb.Item
+                                key={index}
+                                href={item.href}
+                                className="text-gray-600 hover:text-blue-500 transition-colors duration-200 font-medium"
+                            >
+                                {index === breadcrumbs.length - 1 ? (
+                                    <span className="text-gray-900 font-semibold">
+                                        {item.title}
+                                    </span>
+                                ) : (
+                                    item.title
+                                )}
                             </Breadcrumb.Item>
                         ))}
                     </Breadcrumb>
                 </div>
 
                 {/* Page Content */}
-                <Content className="p-6 bg-gray-100">
+                <Content className="p-8 bg-white shadow-md rounded-lg mx-6 my-4">
                     {contextHolder}
                     {children}
                 </Content>

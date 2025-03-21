@@ -13,7 +13,6 @@ import {
     SettingOutlined,
     UserOutlined,
     LogoutOutlined,
-    FileProtectOutlined,
 } from "@ant-design/icons";
 
 const AdminMenu = (modal: HookAPI): ItemType<MenuItemType>[] | undefined => [
@@ -33,30 +32,25 @@ const AdminMenu = (modal: HookAPI): ItemType<MenuItemType>[] | undefined => [
         key: "wfjWj",
         label: "Surat Keluar",
         icon: <SendOutlined />,
-        // onClick: () => Inertia.get("/surat-keluar"),
         children: [
             {
                 key: "nJDXl",
                 label: "Surat Tugas",
-                icon: <FileTextOutlined />,
                 onClick: () => Inertia.get("surat-keluar/surat-tugas"),
             },
             {
                 key: "xRQAK",
                 label: "Surat Rekomendasi",
-                icon: <FileTextOutlined />,
                 onClick: () => Inertia.get("surat-keluar/surat-rekomendasi"),
             },
             {
                 key: "PbyaB",
                 label: "SK Dosen Tetap",
-                icon: <FileProtectOutlined />,
                 onClick: () => Inertia.get("surat-keluar/sk-dosen-tetap"),
             },
             {
                 key: "lyarr",
                 label: "Undangan Rapat",
-                icon: <InboxOutlined />,
                 onClick: () => Inertia.get("surat-keluar/undangan-rapat"),
             },
         ],
