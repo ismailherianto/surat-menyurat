@@ -32,7 +32,7 @@ const TableComponent = <T extends { id: React.Key }>({
       onRow={(record, index) => ({
         onClick: () => onRowClick && index !== undefined && onRowClick(record, index),
       })}
-      locale={{ emptyText: <Empty description="No Data Available" /> }}
+      locale={{ emptyText: <Empty description="Data Kosong" /> }}
       {...rest}
     />
     </Spin>
