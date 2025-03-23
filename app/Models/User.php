@@ -42,4 +42,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function surat_masuk()
+    {
+        return $this->hasMany(surat_masuk::class);
+    }
+
+    public function surat_keluar()
+    {
+        return $this->hasMany(surat_keluar::class);
+    }
+
 }
