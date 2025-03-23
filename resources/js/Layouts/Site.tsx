@@ -18,7 +18,13 @@ const Site = (p: Readonly<SiteProps>) => {
     const user = useUser();
     const { children, title, breadcrumbs, width } = p;
 
-    console.log(user?.name); // Prevent error if user is undefined
+    const userInitials = user?.name
+        ? user.name
+              .split(" ")
+              .map((word) => word[0])
+              .join("")
+              .substring(0, 2)
+        : "U";
 
     const buildMenu = AdminMenu(modal);
 
@@ -65,7 +71,7 @@ const Site = (p: Readonly<SiteProps>) => {
 
                     <Dropdown menu={{ items: menuItems }} trigger={["click"]}>
                         <Avatar className="cursor-pointer bg-blue-500">
-                            U
+                            {userInitials}
                         </Avatar>
                     </Dropdown>
                 </Header>

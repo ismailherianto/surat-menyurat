@@ -1,11 +1,16 @@
-// Only use this hook in components that are rendered by Inertia
-
 import { usePage } from "@inertiajs/react";
 import { User } from "../models/User";
 
-const useUser = () => {
-  const { user } = usePage().props;
-  return user as User;
+interface UserProps extends Record<string, any> {
+  auth?: {
+    user?: User;
+  };
+}
+
+const useUser = (): User | null => {
+  const { auth } = usePage<UserProps>().props;
+  return auth?.user ?? null;
 };
+
 
 export default useUser;
