@@ -11,9 +11,14 @@ class SuratKeluar extends Model
 
     protected $table = 'surat_keluar';
 
-    public function user()
+    public function to_approved_by()
     {
-        return $this->belongsTo(user::class);
+        return $this->belongsTo(user::class, 'approved_by');
+    }
+
+    public function to_created_by()
+    {
+        return $this->belongsTo(user::class, 'created_by');
     }
 
 

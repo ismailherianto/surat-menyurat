@@ -11,8 +11,13 @@ class SuratMasuk extends Model
 
     protected $table = 'surat_masuk';
 
-    public function user()
+    public function to_disposisi()
     {
-        return $this->belongsTo(user::class);
+        return $this->belongsTo(user::class, 'disposisi_ke');
+    }
+
+    public function to_created_by()
+    {
+        return $this->belongsTo(user::class, 'created_by');
     }
 }
