@@ -7,7 +7,7 @@ import {
     FolderOutlined,
     UsergroupAddOutlined,
 } from "@ant-design/icons";
-
+import ListData from "./Components/listData";
 const cards = [
     {
         title: "Total Surat Masuk",
@@ -37,7 +37,13 @@ const cards = [
 
 const indexPage = () => {
     return (
-        <Site title="Dashboard" breadcrumbs={[{ title: "Home", href: "/" },{ title: "Dashboard", href: "/" }]}>
+        <Site
+            title="Dashboard"
+            breadcrumbs={[
+                { title: "Home", href: "/" },
+                { title: "Dashboard", href: "/" },
+            ]}
+        >
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {cards.map((card, index) => (
                     <Card
@@ -49,7 +55,7 @@ const indexPage = () => {
                                 {card.icon}
                             </div>
                         }
-                        bordered={false}
+                        variant="borderless"
                     >
                         <p
                             className={`text-3xl font-bold text-${card.color}-600`}
@@ -59,6 +65,15 @@ const indexPage = () => {
                     </Card>
                 ))}
             </div>
+            <Card title="Surat Masuk" className="mt-6" variant="borderless">
+                {/* Table Component */}
+                <ListData type="surat-masuk" />
+            </Card>
+            <Card title="Surat Keluar" className="mt-6" variant="borderless">
+                {/* Table Component */}
+                <ListData type="surat-keluar" />
+            </Card>
+
         </Site>
     );
 };

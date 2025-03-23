@@ -3,6 +3,7 @@ import { Inertia } from "@inertiajs/inertia";
 import { Layout, Menu, Avatar, Modal, Dropdown, Breadcrumb } from "antd";
 import AdminMenu from "./menu/AdminMenu";
 import useUser from "../hooks/useUser";
+import { HomeOutlined } from '@ant-design/icons';
 
 const { Header, Sider, Content } = Layout;
 
@@ -51,7 +52,7 @@ const Site = (p: Readonly<SiteProps>) => {
                 <Menu theme="dark" mode="inline" items={buildMenu} />
             </Sider> */}
 
-            <Sider collapsible className="h-screen bg-gray-900 text-white">
+            <Sider collapsible className="min-screen bg-gray-900 text-white">
                 <div className="text-center text-xl font-bold text-white py-4">
                     📜 <span className="text-blue-400">E-Surat</span>
                 </div>
@@ -77,7 +78,7 @@ const Site = (p: Readonly<SiteProps>) => {
                 </Header>
 
                 {/* Breadcrumbs */}
-                <div className="px-6 py-3 mb-4 bg-white rounded-lg shadow-md border border-gray-300 flex items-center space-x-3">
+                <div className="px-6 py-3 mb-4 bg-white flex items-center space-x-3">
                     <Breadcrumb
                         separator={<span className="text-gray-400">/</span>}
                     >
@@ -92,7 +93,7 @@ const Site = (p: Readonly<SiteProps>) => {
                                         {item.title}
                                     </span>
                                 ) : (
-                                    item.title
+                                    <HomeOutlined className="text-gray-600" />
                                 )}
                             </Breadcrumb.Item>
                         ))}

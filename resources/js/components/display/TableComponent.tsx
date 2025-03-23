@@ -1,27 +1,29 @@
-import { Table } from 'antd';
+import { Empty, Spin, Table } from 'antd';
 import { ColumnsType, TableProps, TablePaginationConfig } from 'antd/es/table';
+import { GetRowKey } from 'antd/es/table/interface';
 import React from 'react';
 
 interface TableComponentProps<T> extends TableProps<T> {
   columns: ColumnsType<T>;
   dataSource: T[];
   loading?: boolean;
-  rowKey?: string;
+  rowKey: GetRowKey<T>;
   pagination?: false | TablePaginationConfig;
   onRowClick?: (record: T, index: number) => void;
 }
 
-const TableComponent = <T extends object>({
+const TableComponent = <T extends { id: React.Key }>({
   columns,
   dataSource,
   loading = false,
-  rowKey = 'id',
+  rowKey = (record: T) => record.id,
   pagination = { pageSize: 10 },
   onRowClick,
   ...rest
 }: Readonly<TableComponentProps<T>>) => {
   return (
-    <Table<T>
+    <Spin spinning={loading} size='large'>
+      <Table<T>
       columns={columns}
       dataSource={dataSource}
       loading={loading}
@@ -30,8 +32,10 @@ const TableComponent = <T extends object>({
       onRow={(record, index) => ({
         onClick: () => onRowClick && index !== undefined && onRowClick(record, index),
       })}
+      locale={{ emptyText: <Empty description="No Data Available" /> }}
       {...rest}
     />
+    </Spin>
   );
 };
 
