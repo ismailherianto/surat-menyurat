@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -43,14 +44,14 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function surat_masuk()
+    public function to_surat_masuk()
     {
-        return $this->hasMany(surat_masuk::class);
+        return $this->hasMany(SuratMasuk::class);
     }
 
-    public function surat_keluar()
+    public function to_surat_keluar()
     {
-        return $this->hasMany(surat_keluar::class);
+        return $this->hasMany(SuratKeluar::class);
     }
 
 }
