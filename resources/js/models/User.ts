@@ -1,6 +1,6 @@
-export type Role = "STAFF" | "KEPALA" | "ADMIN";
+export type Role = "staff" | "kepala" | "admin";
 
-export interface User {
+export interface UserModel {
     id: number;
     name: string;
     email: string;

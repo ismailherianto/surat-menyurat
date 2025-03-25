@@ -8,7 +8,7 @@ import { HomeOutlined } from "@ant-design/icons";
 const { Header, Sider, Content } = Layout;
 
 interface SiteProps {
-    children: ReactNode;
+    children?: ReactNode;
     title: string;
     breadcrumbs: { title: string; href?: string }[];
     width?: "middle";
@@ -19,10 +19,14 @@ const Site = (p: Readonly<SiteProps>) => {
     const user = useUser();
     const { children, title, breadcrumbs, width } = p;
 
-    const userInitials = user?.name
+    interface User {
+        name?: string;
+    }
+
+    const userInitials: string = user?.name
         ? user.name
               .split(" ")
-              .map((word) => word[0])
+              .map((word: string) => word[0])
               .join("")
               .substring(0, 2)
         : "U";

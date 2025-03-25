@@ -83,7 +83,7 @@ const AdminMenu = (modal: HookAPI): ItemType<MenuItemType>[] | undefined => [
         key: "hEWgg",
         label: "Pengguna",
         icon: <UserOutlined />,
-        onClick: () => Inertia.get("/pengguna"),
+        onClick: () => Inertia.get("/user-management"),
     },
     {
         key: "LhlFL",

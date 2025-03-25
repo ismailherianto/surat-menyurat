@@ -7,7 +7,7 @@ import {
     FolderOutlined,
     UsergroupAddOutlined,
 } from "@ant-design/icons";
-import ListData from "./Components/listData";
+import ListData from "./Components/ListData";
 const cards = [
     {
         title: "Total Surat Masuk",
