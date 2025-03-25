@@ -3,7 +3,7 @@ import { Inertia } from "@inertiajs/inertia";
 import { Layout, Menu, Avatar, Modal, Dropdown, Breadcrumb } from "antd";
 import AdminMenu from "./menu/AdminMenu";
 import useUser from "../hooks/useUser";
-import { HomeOutlined } from '@ant-design/icons';
+import { HomeOutlined } from "@ant-design/icons";
 
 const { Header, Sider, Content } = Layout;
 
@@ -28,14 +28,6 @@ const Site = (p: Readonly<SiteProps>) => {
         : "U";
 
     const buildMenu = AdminMenu(modal);
-
-    const menuItems = [
-        {
-            key: "profile",
-            label: "Profile",
-            onClick: () => Inertia.get("/profile"),
-        },
-    ];
 
     return (
         <Layout className="min-h-screen">
@@ -70,11 +62,9 @@ const Site = (p: Readonly<SiteProps>) => {
                 <Header className="bg-white shadow-md flex justify-between items-center px-4">
                     <div className="text-lg font-semibold">{title}</div>
 
-                    <Dropdown menu={{ items: menuItems }} trigger={["click"]}>
-                        <Avatar className="cursor-pointer bg-blue-500">
-                            {userInitials}
-                        </Avatar>
-                    </Dropdown>
+                    <Avatar className="cursor-pointer bg-blue-500" onClick={() => Inertia.visit("/profile")}>
+                        {userInitials}
+                    </Avatar>
                 </Header>
 
                 {/* Breadcrumbs */}
