@@ -27,7 +27,7 @@ const listUser = () => {
     return (
         <>
             <ButtonComponent type="primary" className="float-right mb-4">
-                Tambah Pengguna
+                Tambah User
             </ButtonComponent>
             <Divider />
             <TableComponent<UserModel>
